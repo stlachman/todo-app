@@ -8,6 +8,7 @@ export const initialState = [
 
 export const ADD = "ADD";
 export const TOGGLE = "TOGGLE";
+export const CLEAR = "CLEAR";
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -24,6 +25,8 @@ export const reducer = (state, action) => {
             : item
         )
       ];
+    case CLEAR:
+      return [...state.filter(item => !item.completed)];
     default:
       return state;
   }

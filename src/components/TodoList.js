@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 
 import TodoForm from "./TodoForm";
-import { initialState, reducer, ADD, TOGGLE } from "../reducers";
+import { initialState, reducer, ADD, TOGGLE, CLEAR } from "../reducers";
 
 const TodoList = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -14,6 +14,11 @@ const TodoList = () => {
     dispatch({ type: TOGGLE, payload: { id } });
   };
 
+  const clearCompleted = e => {
+    e.preventDefault();
+    dispatch({ type: CLEAR });
+  };
+
   return (
     <div>
       <h2>Current Todos</h2>
@@ -24,7 +29,7 @@ const TodoList = () => {
           </li>
         ))}
       </ul>
-      <TodoForm addTodo={addTodo} />
+      <TodoForm clearCompleted={clearCompleted} addTodo={addTodo} />
     </div>
   );
 };
