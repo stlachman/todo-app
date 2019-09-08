@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 
 import TodoForm from "./TodoForm";
+import Todo from "./Todo";
 import { initialState, reducer, ADD, TOGGLE, CLEAR } from "../reducers";
 
 const TodoList = () => {
@@ -24,9 +25,7 @@ const TodoList = () => {
       <h2>Current Todos</h2>
       <ul>
         {state.map(todo => (
-          <li key={todo.id} onClick={() => toggleComplete(todo.id)}>
-            {todo.item}
-          </li>
+          <Todo key={todo.id} todo={todo} toggleComplete={toggleComplete} />
         ))}
       </ul>
       <TodoForm clearCompleted={clearCompleted} addTodo={addTodo} />
