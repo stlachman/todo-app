@@ -6,6 +6,12 @@ import styled from "styled-components";
 
 const Container = styled.div`
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+`;
+
+const InputContainer = styled.div`
+  margin-top: 1rem;
 `;
 
 const Input = styled.input`
@@ -14,9 +20,11 @@ const Input = styled.input`
   font-weight: 700;
   font-family: "Work Sans", sans-serif;
   transition: 0.225s all ease-in-out;
+  border: 2px solid #999;
 
   &:focus {
-    outline: 2px solid #333;
+    outline: transparent;
+    border: 2px solid #333;
   }
 `;
 
@@ -74,29 +82,35 @@ const TodoForm = ({ addTodo, clearCompleted }) => {
   return (
     <Container>
       <form onSubmit={handleSubmit}>
-        <Label htmlFor="task">Task</Label>
-        <Input
-          type="text"
-          name="task"
-          value={todo.task}
-          onChange={handleChange}
-        />
-        <Label htmlFor="tag">Tag</Label>
-        <Input
-          type="text"
-          name="tag"
-          value={todo.tag}
-          onChange={handleChange}
-        />
-        <div>
-          <Label>Due Date:</Label>
+        <InputContainer>
+          <Label htmlFor="task">Task</Label>
+          <Input
+            type="text"
+            name="task"
+            value={todo.task}
+            onChange={handleChange}
+          />
+        </InputContainer>
+        <InputContainer>
+          <Label htmlFor="tag">Tag</Label>
+          <Input
+            type="text"
+            name="tag"
+            value={todo.tag}
+            onChange={handleChange}
+          />
+        </InputContainer>
+        <InputContainer>
+          <Label name="date">Due Date:</Label>
           <DatePicker
+            name="date"
+            minDate={new Date()}
             selected={startDate}
             timeCaption="time"
             dateFormat="MMMM d, yyyy"
             onChange={date => setStartDate(date)}
           />
-        </div>
+        </InputContainer>
         <ButtonContainer>
           <Button type="submit">Add Todo</Button>
           <Button onClick={e => clearCompleted(e)}>Clear Completed</Button>
