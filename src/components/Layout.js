@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin: 0 auto;
-  max-width: 1200px;
+  margin: 2rem auto 0;
+  max-width: 500px;
 `;
 
 const Layout = ({ children }) => {

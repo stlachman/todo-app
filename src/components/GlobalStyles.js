@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: "Work Sans", sans-serif;
     font-size: 62.5%;
     line-height: 1.4;
+    background: #D8DBE2;
     
     > div {
       margin-top: 0;
@@ -29,11 +30,18 @@ export const GlobalStyles = createGlobalStyle`
   h2 {
     font-size: 2.5rem
   }
-  
+
   strong {
     color: #222;
   }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
   li {
     margin-top: 0.25rem;
+    font-size: 1.6rem;
   }
 `;
