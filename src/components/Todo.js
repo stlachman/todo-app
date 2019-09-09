@@ -6,16 +6,21 @@ const CompletedText = styled.span`
 `;
 
 const Todo = ({ todo, toggleComplete }) => {
+  console.log(todo.dueBy);
   return (
-    <li onClick={() => toggleComplete(todo.id)}>
-      {todo.item} *{todo.tag}
+    <div onClick={() => toggleComplete(todo.id)}>
+      <p>
+        {todo.item} *{todo.tag}
+      </p>
+      <p>Due By: {todo.dueBy.toLocaleDateString()}</p>
+
       {""}
       {todo.completed ? (
         <CompletedText>
           {`Completed ${new Date().toLocaleDateString()}`}
         </CompletedText>
       ) : null}
-    </li>
+    </div>
   );
 };
 

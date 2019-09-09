@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -51,6 +54,7 @@ const Button = styled.button`
 
 const TodoForm = ({ addTodo, clearCompleted }) => {
   const [todo, setTodo] = useState({ task: "", tag: "" });
+  const [startDate, setStartDate] = useState(new Date());
 
   const handleChange = e => {
     setTodo({
@@ -61,7 +65,9 @@ const TodoForm = ({ addTodo, clearCompleted }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    addTodo(todo);
+
+    const newTodo = { ...todo, dueDate: startDate };
+    addTodo(newTodo);
     setTodo({ task: "", tag: "" });
   };
 
@@ -82,6 +88,14 @@ const TodoForm = ({ addTodo, clearCompleted }) => {
           value={todo.tag}
           onChange={handleChange}
         />
+        <div>
+          <DatePicker
+            selected={startDate}
+            timeCaption="time"
+            dateFormat="MMMM d, yyyy"
+            onChange={date => setStartDate(date)}
+          />
+        </div>
         <ButtonContainer>
           <Button type="submit">Add Todo</Button>
           <Button onClick={e => clearCompleted(e)}>Clear Completed</Button>

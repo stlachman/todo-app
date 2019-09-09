@@ -8,6 +8,7 @@ const TodoList = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const addTodo = item => {
+    console.log(item);
     dispatch({
       type: ADD,
       payload: {
@@ -31,11 +32,11 @@ const TodoList = () => {
   return (
     <div>
       <h2>Current Todos</h2>
-      <ul>
+      <div>
         {state.map(todo => (
           <Todo key={todo.id} todo={todo} toggleComplete={toggleComplete} />
         ))}
-      </ul>
+      </div>
       <TodoForm clearCompleted={clearCompleted} addTodo={addTodo} />
     </div>
   );
