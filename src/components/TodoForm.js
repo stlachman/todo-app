@@ -89,6 +89,7 @@ const TodoForm = ({ addTodo, clearCompleted }) => {
           onChange={handleChange}
         />
         <div>
+          <Label>Due Date:</Label>
           <DatePicker
             selected={startDate}
             timeCaption="time"

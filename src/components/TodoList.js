@@ -8,10 +8,10 @@ const TodoList = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const addTodo = item => {
-    console.log(item);
     dispatch({
       type: ADD,
       payload: {
+        dueBy: item.dueDate,
         item: item.task,
         tag: item.tag,
         id: Date.now(),
