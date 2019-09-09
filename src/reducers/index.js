@@ -2,6 +2,7 @@ export const initialState = [
   {
     item: "Learn about reducers",
     completed: false,
+    dueBy: new Date("September 08, 2019"),
     tag: "technical",
     id: 3892987589
   }
