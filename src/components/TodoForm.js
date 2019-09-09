@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin-top: 0.8rem;
+  margin-top: 2rem;
 `;
 
 const Input = styled.input`
@@ -19,7 +19,8 @@ const Input = styled.input`
 
 const Label = styled.label`
   display: block;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  font-weight: 700;
 `;
 
 const ButtonContainer = styled.div`
@@ -29,20 +30,14 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   font-family: "Work Sans", sans-serif;
   font-size: 1.5rem;
-  color: #fff;
+  color: #333;
   padding: 0.5rem 1.2rem;
   font-weight: 700;
   display: inline-block;
   margin: 0 0.75rem;
   border-radius: 4px;
-  border: 0;
-  transition: 0.5s;
-  background-image: linear-gradient(
-    to right,
-    #16222a 0%,
-    #3a6073 51%,
-    #16222a 100%
-  );
+  border: 2px solid #333;
+  transition: 0.25s ease-in;
 
   &:first-of-type {
     margin-left: 0;
@@ -50,7 +45,7 @@ const Button = styled.button`
 
   &:hover {
     cursor: pointer;
-    background-position: right center;
+    opacity: 0.85;
   }
 `;
 
