@@ -3,7 +3,8 @@ import React from "react";
 const Todo = ({ todo, toggleComplete }) => {
   return (
     <li onClick={() => toggleComplete(todo.id)}>
-      {todo.item}{" "}
+      {todo.item} *{todo.tag}
+      {""}
       {todo.completed ? `Completed ${new Date().toLocaleDateString()}` : null}
     </li>
   );

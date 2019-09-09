@@ -8,7 +8,15 @@ const TodoList = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const addTodo = item => {
-    dispatch({ type: ADD, payload: item });
+    dispatch({
+      type: ADD,
+      payload: {
+        item: item.task,
+        tag: item.tag,
+        id: Date.now(),
+        completed: false
+      }
+    });
   };
 
   const toggleComplete = id => {

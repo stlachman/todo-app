@@ -2,6 +2,7 @@ export const initialState = [
   {
     item: "Learn about reducers",
     completed: false,
+    tag: "technical",
     id: 3892987589
   }
 ];
@@ -15,7 +16,9 @@ export const reducer = (state, action) => {
     case ADD:
       return [
         ...state,
-        { item: action.payload, id: Date.now(), completed: false }
+        {
+          ...action.payload
+        }
       ];
     case TOGGLE:
       return [

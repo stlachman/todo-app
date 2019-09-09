@@ -50,24 +50,38 @@ const Button = styled.button`
 `;
 
 const TodoForm = ({ addTodo, clearCompleted }) => {
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState({ task: "", tag: "" });
 
   const handleChange = e => {
-    setTodo(([e.target.name] = e.target.value));
+    setTodo({
+      ...todo,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     addTodo(todo);
-    setTodo("");
+    setTodo({ task: "", tag: "" });
   };
 
   return (
     <Container>
       <form onSubmit={handleSubmit}>
-        <Label htmlFor="todo">Todo</Label>
-        <Input type="text" name="todo" value={todo} onChange={handleChange} />
-
+        <Label htmlFor="task">Task</Label>
+        <Input
+          type="text"
+          name="task"
+          value={todo.task}
+          onChange={handleChange}
+        />
+        <Label htmlFor="tag">Tag</Label>
+        <Input
+          type="text"
+          name="tag"
+          value={todo.tag}
+          onChange={handleChange}
+        />
         <ButtonContainer>
           <Button type="submit">Add Todo</Button>
           <Button onClick={e => clearCompleted(e)}>Clear Completed</Button>
