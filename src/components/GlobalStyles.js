@@ -35,6 +35,10 @@ export const GlobalStyles = createGlobalStyle`
     color: #222;
   }
 
+  p {
+    font-size: 1.6rem;
+  }
+
   ul {
     list-style: none;
     padding-left: 0;
