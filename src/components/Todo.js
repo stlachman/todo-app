@@ -15,6 +15,7 @@ const CompletedText = styled.span`
 
 const StrikeThrough = styled.span`
   position: relative;
+  font-size: 1.6rem;
   @keyframes strike {
     0% {
       width: 0;
@@ -48,17 +49,22 @@ const StrikeThrough = styled.span`
 
 const Todo = ({ todo, toggleComplete }) => {
   return (
-    <li onClick={() => toggleComplete(todo.id)}>
+    <TodoCard onClick={() => toggleComplete(todo.id)}>
       <StrikeThrough completed={todo.completed}>
         {todo.item} *{todo.tag}
         {""}
         {todo.completed ? (
-          <CompletedText>
-            {`Completed ${new Date().toLocaleDateString()}`}
-          </CompletedText>
+          <CompletedText>{`${new Date().toLocaleDateString()}`}</CompletedText>
         ) : null}
       </StrikeThrough>
-    </li>
+
+      <p>
+        Due:{" "}
+        {todo.dueBy <= new Date()
+          ? `${todo.dueBy.toLocaleDateString()} Overdue item`
+          : todo.dueBy.toLocaleDateString()}
+      </p>
+    </TodoCard>
   );
 };
 
