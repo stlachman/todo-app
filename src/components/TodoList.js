@@ -37,7 +37,7 @@ const TodoList = () => {
     <div>
       <h2>Current Todos</h2>
       <TodoContainer>
-        {state.map(todo => (
+        {state.todos.map(todo => (
           <Todo key={todo.id} todo={todo} toggleComplete={toggleComplete} />
         ))}
       </TodoContainer>
