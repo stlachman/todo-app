@@ -32,7 +32,6 @@ export const getTodos = id => dispatch => {
   return axiosWithAuth()
     .get(`/users/${id}/tasks`)
     .then(res => {
-      console.log(res);
       dispatch({ type: FETCH_TASKS_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -54,5 +53,25 @@ export const addTodo = task => dispatch => {
     })
     .catch(err => {
       dispatch({ type: ADD_TASK_FAILURE, payload: err });
+    });
+};
+
+export const TOGGLE_TASK_INIT = "TOGGLE_TASK_INIT";
+export const TOGGLE_TASK_SUCCESS = "TOGGLE_TASK_SUCCESS";
+export const TOGGLE_TASK_FAILURE = "TOGGLE_TASK_FAILURE";
+
+export const toggleComplete = task => dispatch => {
+  dispatch({ type: TOGGLE_TASK_INIT });
+  function convertCompleted(task) {
+    return !task.completed === true ? 1 : 0;
+  }
+
+  return axiosWithAuth()
+    .put(`/tasks/${task.id}`, { ...task, completed: convertCompleted(task) })
+    .then(res => {
+      dispatch({ type: TOGGLE_TASK_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: TOGGLE_TASK_FAILURE, payload: err });
     });
 };

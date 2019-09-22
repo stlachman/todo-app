@@ -7,7 +7,10 @@ import {
   ADD_TASK_FAILURE,
   FETCH_TASKS_INIT,
   FETCH_TASKS_SUCCESS,
-  FETCH_TASKS_FAILURE
+  FETCH_TASKS_FAILURE,
+  TOGGLE_TASK_INIT,
+  TOGGLE_TASK_SUCCESS,
+  TOGGLE_TASK_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -82,7 +85,26 @@ export const reducer = (state = initialState, action) => {
         fetchingTasks: false,
         error: action.payload
       };
-
+    case TOGGLE_TASK_INIT:
+      return {
+        ...state,
+        error: ""
+      };
+    case TOGGLE_TASK_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          todos: state.user.todos.map(item =>
+            item.id === action.payload.id ? { ...action.payload } : item
+          )
+        }
+      };
+    case TOGGLE_TASK_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
     // case TOGGLE:
     //   return {
     //     ...state,

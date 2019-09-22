@@ -48,8 +48,10 @@ const StrikeThrough = styled.span`
 `;
 
 const Todo = ({ todo, toggleComplete }) => {
+  let date = new Date(todo.due_date);
+  console.log(date.toLocaleDateString());
   return (
-    <TodoCard onClick={() => toggleComplete(todo.id)}>
+    <TodoCard onClick={() => toggleComplete(todo)}>
       <StrikeThrough completed={todo.completed}>
         {todo.task} *{todo.category}
         {""}
@@ -60,9 +62,9 @@ const Todo = ({ todo, toggleComplete }) => {
 
       <p>
         Due:{" "}
-        {/* {todo.dueBy <= new Date()
-          ? `${todo.dueBy.toLocaleDateString()} Overdue item`
-          : todo.dueBy.toLocaleDateString()} */}
+        {date <= new Date()
+          ? `${date.toLocaleDateString()} Overdue item`
+          : date.toLocaleDateString()}
       </p>
     </TodoCard>
   );
