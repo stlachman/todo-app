@@ -5,7 +5,6 @@ import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/Login";
 import TodoList from "./components/TodoList";
-import "./App.css";
 
 function App() {
   return (
