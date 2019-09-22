@@ -21,15 +21,6 @@ const Login = props => {
       props.history.push("/tasks");
     });
 
-    // axiosWithAuth()
-    //   .post(`/login`, credentials)
-    //   .then(res => {
-    //     localStorage.setItem("token", res.data.token);
-    //     props.history.push("/tasks");
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
     setCredentials({ name: "", password: "" });
   };
 

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addTodo } from "../actions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -61,7 +63,7 @@ const Button = styled.button`
 `;
 
 const TodoForm = ({ addTodo, clearCompleted }) => {
-  const [todo, setTodo] = useState({ task: "", tag: "" });
+  const [todo, setTodo] = useState({ task: "", category: "" });
   const [startDate, setStartDate] = useState(new Date());
 
   const handleChange = e => {
@@ -73,10 +75,13 @@ const TodoForm = ({ addTodo, clearCompleted }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    const newTodo = { ...todo, dueDate: startDate };
+    const newTodo = {
+      ...todo,
+      due_date: startDate,
+      user_id: localStorage.getItem("id")
+    };
     addTodo(newTodo);
-    setTodo({ task: "", tag: "" });
+    setTodo({ task: "", category: "" });
   };
 
   return (
@@ -92,11 +97,11 @@ const TodoForm = ({ addTodo, clearCompleted }) => {
           />
         </InputContainer>
         <InputContainer>
-          <Label htmlFor="tag">Tag</Label>
+          <Label htmlFor="category">Category</Label>
           <Input
             type="text"
-            name="tag"
-            value={todo.tag}
+            name="category"
+            value={todo.category}
             onChange={handleChange}
           />
         </InputContainer>
@@ -120,4 +125,7 @@ const TodoForm = ({ addTodo, clearCompleted }) => {
   );
 };
 
-export default TodoForm;
+export default connect(
+  null,
+  { addTodo }
+)(TodoForm);

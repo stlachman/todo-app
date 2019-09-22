@@ -9,6 +9,7 @@ const TodoContainer = styled.div`
 `;
 
 const TodoList = props => {
+  console.log(props);
   // const [state, dispatch] = useReducer(reducer, initialState);
   // const addTodo = item => {
   //   dispatch({

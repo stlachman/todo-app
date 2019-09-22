@@ -51,7 +51,7 @@ const Todo = ({ todo, toggleComplete }) => {
   return (
     <TodoCard onClick={() => toggleComplete(todo.id)}>
       <StrikeThrough completed={todo.completed}>
-        {todo.item} *{todo.tag}
+        {todo.task} *{todo.category}
         {""}
         {todo.completed ? (
           <CompletedText>{`${new Date().toLocaleDateString()}`}</CompletedText>

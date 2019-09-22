@@ -1,4 +1,11 @@
-import { LOGIN_INIT, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions";
+import {
+  LOGIN_INIT,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  ADD_TASK_INIT,
+  ADD_TASK_SUCCESS,
+  ADD_TASK_FAILURE
+} from "../actions";
 
 const initialState = {
   isLoggingIn: false,
@@ -9,9 +16,9 @@ const initialState = {
     name: "",
     todos: [
       {
-        item: "Learn about reducers",
+        task: "Learn about reducers",
         completed: false,
-        dueBy: new Date("September 08, 2019"),
+        due_date: new Date("September 08, 2019"),
         tag: "technical",
         id: 3892987589
       }
@@ -38,6 +45,24 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: false,
+        error: action.payload
+      };
+    case ADD_TASK_INIT:
+      return {
+        ...state,
+        error: ""
+      };
+    case ADD_TASK_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          todos: [...state.user.todos, action.payload]
+        }
+      };
+    case ADD_TASK_FAILURE:
+      return {
+        ...state,
         error: action.payload
       };
     // case ADD:
