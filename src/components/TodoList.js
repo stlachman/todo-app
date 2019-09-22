@@ -10,7 +10,6 @@ const TodoContainer = styled.div`
 
 const TodoList = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const addTodo = item => {
     dispatch({
       type: ADD,
