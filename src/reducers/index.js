@@ -4,25 +4,21 @@ import {
   LOGIN_FAILURE,
   ADD_TASK_INIT,
   ADD_TASK_SUCCESS,
-  ADD_TASK_FAILURE
+  ADD_TASK_FAILURE,
+  FETCH_TASKS_INIT,
+  FETCH_TASKS_SUCCESS,
+  FETCH_TASKS_FAILURE
 } from "../actions";
 
 const initialState = {
   isLoggingIn: false,
   loggedIn: false,
+  fetchingTasks: false,
   error: "",
   id: "",
   user: {
     name: "",
-    todos: [
-      {
-        task: "Learn about reducers",
-        completed: false,
-        due_date: new Date("September 08, 2019"),
-        tag: "technical",
-        id: 3892987589
-      }
-    ]
+    todos: []
   }
 };
 
@@ -65,11 +61,28 @@ export const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload
       };
-    // case ADD:
-    //   return {
-    //     ...state,
-    //     todos: [...state.todos, action.payload]
-    //   };
+    case FETCH_TASKS_INIT:
+      return {
+        ...state,
+        fetchingTasks: true,
+        error: ""
+      };
+    case FETCH_TASKS_SUCCESS:
+      return {
+        ...state,
+        fetchingTasks: false,
+        user: {
+          ...state.user,
+          todos: action.payload
+        }
+      };
+    case FETCH_TASKS_FAILURE:
+      return {
+        ...state,
+        fetchingTasks: false,
+        error: action.payload
+      };
+
     // case TOGGLE:
     //   return {
     //     ...state,

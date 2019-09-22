@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { getTodos } from "../actions";
 import styled from "styled-components";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
@@ -9,7 +10,12 @@ const TodoContainer = styled.div`
 `;
 
 const TodoList = props => {
+  const { getTodos } = props;
+  const id = localStorage.getItem("id");
   console.log(props);
+  useEffect(() => {
+    getTodos(id);
+  }, [getTodos, id]);
   // const [state, dispatch] = useReducer(reducer, initialState);
   // const addTodo = item => {
   //   dispatch({
@@ -48,14 +54,16 @@ const TodoList = props => {
 
 const mapStateToProps = state => {
   return {
+    fetchingTasks: state.fetchingTasks,
     user: {
       name: state.user.name,
       todos: state.user.todos
-    }
+    },
+    error: state.error
   };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { getTodos }
 )(TodoList);
