@@ -60,9 +60,9 @@ const Todo = ({ todo, toggleComplete }) => {
 
       <p>
         Due:{" "}
-        {todo.dueBy <= new Date()
+        {/* {todo.dueBy <= new Date()
           ? `${todo.dueBy.toLocaleDateString()} Overdue item`
-          : todo.dueBy.toLocaleDateString()}
+          : todo.dueBy.toLocaleDateString()} */}
       </p>
     </TodoCard>
   );

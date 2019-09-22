@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { connect } from "react-redux";
+import { login } from "../actions";
 
 const Login = props => {
   const [credentials, setCredentials] = useState({
@@ -16,15 +17,19 @@ const Login = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axiosWithAuth()
-      .post(`/login`, credentials)
-      .then(res => {
-        localStorage.setItem("token", res.data.token);
-        props.history.push("/tasks");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    props.login(credentials).then(() => {
+      props.history.push("/tasks");
+    });
+
+    // axiosWithAuth()
+    //   .post(`/login`, credentials)
+    //   .then(res => {
+    //     localStorage.setItem("token", res.data.token);
+    //     props.history.push("/tasks");
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
     setCredentials({ name: "", password: "" });
   };
 
@@ -52,4 +57,7 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default connect(
+  null,
+  { login }
+)(Login);
